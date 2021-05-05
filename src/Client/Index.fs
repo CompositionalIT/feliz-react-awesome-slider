@@ -93,7 +93,7 @@ let containerBox (model: Model) (dispatch: Msg -> unit) =
 
 let view (model: Model) (dispatch: Msg -> unit) =
     AwesomeSlider.create [
-        AwesomeSlider.selected 3
+        //AwesomeSlider.selected 3
         AwesomeSlider.children [
            Html.div "Hello"
            Html.div "From"

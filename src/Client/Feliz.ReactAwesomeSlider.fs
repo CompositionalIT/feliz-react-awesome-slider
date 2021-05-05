@@ -37,7 +37,6 @@ module Interop =
 type AwesomeSlider =
     static member inline animation (s: string) = unbox<IAwesomeSliderProperty>("animation" ==> s)
     static member inline selected (number: int) = Interop.mkSliderAttr "selected" number
-    static member inline children (e: ReactElement list) = Interop.mkSliderAttr "children" (prop.children e)
+    static member inline children (e: ReactElement list) = unbox<IAwesomeSliderProperty>(prop.children e)
     static member inline create (props: IAwesomeSliderProperty list) =
-        //let elements = splitChildProps props
         Interop.reactApi.createElement(reactAwesomeSlider, createObj !!props)
