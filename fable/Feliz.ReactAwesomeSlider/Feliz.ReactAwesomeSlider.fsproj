@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>Feliz.ReactAwesomeSlider</RootNamespace>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>0.0.1</PackageVersion>
+        <Title>Feliz.ReactAwesomeSlider</Title>
+        <Authors>Compositional IT</Authors>
+        <Description>Feliz binding for react-awesome-slider</Description>
+        <PackageProjectUrl>https://github.com/Akash-Mair/feliz-react-awesome-slider</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Akash-Mair/feliz-react-awesome-slider</RepositoryUrl>
+    </PropertyGroup>
+    <PropertyGroup>
+        <NpmDependencies>
+            <NpmPackage Name="date-fns" Version="gte 4.1.0 lt 5.0.0" ResolutionStrategy="Max" />
+        </NpmDependencies>
+        <PackageIcon>CIT-logo.png</PackageIcon>
+        <Version>0.0.1</Version>
+    </PropertyGroup>
+    <ItemGroup>
+        <Content Include="*.fsproj; **\*.fs; **\*.fsi" PackagePath="fable\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="paket.references" />
+      <Compile Include="Feliz.ReactAwesomeSlider.fs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="..\..\CIT-logo.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
+    </ItemGroup>
+
+</Project>

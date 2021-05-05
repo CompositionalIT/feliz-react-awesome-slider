@@ -1,4 +1,4 @@
-﻿module ReactAwesomeSlider
+module ReactAwesomeSlider
 
 open Fable.Core
 open Fable.Core.JsInterop
