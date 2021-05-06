@@ -1,37 +1,54 @@
-## Welcome to GitHub Pages
+## Feliz.ReactAwesomeSlider
 
-You can use the [editor on GitHub](https://github.com/Akash-Mair/feliz-react-awesome-slider/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Feliz binding for [react-awesome-slider](https://github.com/rcaferati/react-awesome-slider)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Installation
 
-### Markdown
+Install the dotnet package
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+```
+dotnet add package Feliz.ReactAwesomeSlider
+```
+### Install the npm package
 
-```markdown
-Syntax highlighted code block
+```
+npm install --save react-awesome-slider
+```
+### Installation with Femto
 
-# Header 1
-## Header 2
-### Header 3
+Use Femto, then it can install everything for you in one go
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+cd ./project
+femto install Feliz.ReactAwesomeSlider
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Usage 
 
-### Jekyll Themes
+```
+AwesomeSlider.create [
+  AwesomeSlider.animation FoldOutAnimation
+  AwesomeSlider.selected 2
+  AwesomeSlider.children [
+    Html.div "Hello"
+    Html.div "From"
+    Html.div "React"
+    Html.div "Awesome"
+    Html.div "Slider"
+  ]
+]
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Akash-Mair/feliz-react-awesome-slider/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Supported props
 
-### Support or Contact
+- animation
+- selected
+- name
+- bullets
+- organicArrows
+- fillParent
+- infinite
+- mobileTouch
+- transitionDelay
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Other props are still in progress as well as HOC 
