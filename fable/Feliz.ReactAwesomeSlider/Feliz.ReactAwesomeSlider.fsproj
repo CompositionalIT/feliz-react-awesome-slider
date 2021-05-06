@@ -14,7 +14,7 @@
     </PropertyGroup>
     <PropertyGroup>
         <NpmDependencies>
-            <NpmPackage Name="date-fns" Version="gte 4.1.0 lt 5.0.0" ResolutionStrategy="Max" />
+            <NpmPackage Name="react-awesome-slider" Version="gte 4.1.0 lt 5.0.0" ResolutionStrategy="Max" />
         </NpmDependencies>
         <PackageIcon>CIT-logo.png</PackageIcon>
         <Version>0.0.1</Version>
