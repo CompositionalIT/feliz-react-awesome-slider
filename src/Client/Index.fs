@@ -47,19 +47,34 @@ open Feliz.ReactAwesomeSlider
 
 let view (model: Model) (dispatch: Msg -> unit) =
     Html.div [
-        AwesomeSlider.create [
-            AwesomeSlider.animation FoldOutAnimation
-            AwesomeSlider.fillParent false
-            AwesomeSlider.organicArrows true
-            AwesomeSlider.bullets true
-            AwesomeSlider.infinite true
-            AwesomeSlider.mobileTouch false
-            AwesomeSlider.startup true
-            AwesomeSlider.buttonContentRight (Html.div "Right")
-            AwesomeSlider.customContent (Html.div "Hello")
-            AwesomeSlider.startupScreen (Html.div "Loading")
+        //AwesomeSlider.create [
+        //    AwesomeSlider.animation FoldOutAnimation
+        //    AwesomeSlider.fillParent false
+        //    AwesomeSlider.organicArrows true
+        //    AwesomeSlider.bullets true
+        //    AwesomeSlider.infinite true
+        //    AwesomeSlider.mobileTouch false
+        //    AwesomeSlider.startup true
+        //    AwesomeSlider.buttonContentRight (Html.div "Right")
+        //    AwesomeSlider.customContent (Html.div "Hello")
+        //    AwesomeSlider.startupScreen (Html.div "Loading")
+        //    AwesomeSlider.children [
+        //        for bgImage in model.Images do
+        //        Html.div [
+        //            prop.style [
+        //                style.backgroundImageUrl bgImage
+        //                style.backgroundSize.cover
+        //            ]
+        //        ]
+        //    ]
+        //]
+        AutoplaySlider.create [
+            AutoplaySlider.play true
+            AutoplaySlider.animation FoldOutAnimation
+            AutoplaySlider.interval 3000
+            AutoplaySlider.cancelOnInteraction false
             AwesomeSlider.children [
-                for bgImage in model.Images do
+                for bgImage in (List.rev model.Images) do
                 Html.div [
                     prop.style [
                         style.backgroundImageUrl bgImage

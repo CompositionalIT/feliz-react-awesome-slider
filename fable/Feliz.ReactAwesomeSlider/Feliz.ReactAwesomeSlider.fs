@@ -5,6 +5,7 @@ open Fable.Core.JsInterop
 open Feliz
 
 let reactAwesomeSlider: obj = importDefault "react-awesome-slider"
+let withAutoPlay: (obj -> obj) = importDefault "react-awesome-slider/dist/autoplay"
 
 importAll "react-awesome-slider/dist/custom-animations/cube-animation.css"
 importAll "react-awesome-slider/dist/custom-animations/fall-animation.css"
@@ -16,7 +17,6 @@ importAll "react-awesome-slider/dist/styles.css"
 
 [<Erase>]
 type IAwesomeSliderProperty = interface end
-
 
 type Animation =
     | FoldOutAnimation
@@ -33,7 +33,7 @@ type Animation =
 
 let (=>) key value = unbox<IAwesomeSliderProperty>(key ==> value)
 
-type AwesomeSlider =
+type AwesomeSlider() =
     static member inline animation (a: Animation) = "animation" => (Animation.toJSValue a)
 
     static member inline name (s: string) = "name" => s
@@ -56,3 +56,16 @@ type AwesomeSlider =
     static member inline children (e: ReactElement list) = unbox<IAwesomeSliderProperty>(prop.children e)
     static member inline create (props) =
         Interop.reactApi.createElement(reactAwesomeSlider, createObj !!props)
+
+
+type AutoplaySlider() =
+    inherit AwesomeSlider()
+
+    static member inline play (b: bool) = "play" => b
+    static member inline cancelOnInteraction (b: bool) = "cancelOnInteraction" => b
+
+    static member inline interval (i: int) = "interval" => i
+
+    static member inline create (props) =
+        let autoplaySlider = withAutoPlay(reactAwesomeSlider)
+        Interop.reactApi.createElement(autoplaySlider, createObj !!props)
