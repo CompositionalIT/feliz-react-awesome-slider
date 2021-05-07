@@ -17,7 +17,7 @@
             <NpmPackage Name="react-awesome-slider" Version="gte 4.1.0 lt 5.0.0" ResolutionStrategy="Max" />
         </NpmDependencies>
         <PackageIcon>CIT-logo.png</PackageIcon>
-        <Version>0.0.1</Version>
+        <Version>0.0.2</Version>
     </PropertyGroup>
     <ItemGroup>
         <Content Include="*.fsproj; **\*.fs; **\*.fsi" PackagePath="fable\" />

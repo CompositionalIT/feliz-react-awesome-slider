@@ -44,6 +44,11 @@ type AwesomeSlider =
     static member inline infinite (b: bool) = "infinite" => b
     static member inline mobileTouch (b: bool) = "mobileTouch" => b
     static member inline buttons (b: bool) = "buttons" => b
+    static member inline startup (b: bool) = "startup" => b
+
+    static member inline startupScreen (element: ReactElement) = "startupScreen" => element
+    static member inline buttonContentRight (element: ReactElement) = "buttonContentRight" => element
+    static member inline customContent (element: ReactElement) = "customContent" => element
 
 
     static member inline selected (number: int) = "selected" => number

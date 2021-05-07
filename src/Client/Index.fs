@@ -4,92 +4,68 @@ open Elmish
 open Fable.Remoting.Client
 open Shared
 
-type Model = { Todos: Todo list; Input: string }
+type Model = { Images: string list; Input: string }
 
 type Msg =
-    | GotTodos of Todo list
-    | SetInput of string
-    | AddTodo
-    | AddedTodo of Todo
+    | GotImages of string list
 
 let todosApi =
     Remoting.createApi ()
     |> Remoting.withRouteBuilder Route.builder
     |> Remoting.buildProxy<ITodosApi>
 
+
+
+let bgImages =
+    [ "https://www.muchbetteradventures.com/magazine/content/images/size/w2000/2019/10/29122602/iStock-971053374.jpg"
+      "https://thelandscapephotoguy.com/wp-content/uploads/2019/01/landscape%20new%20zealand%20S-shape.jpg"
+      "https://photographylife.com/wp-content/uploads/2017/01/What-is-landscape-photography.jpg"
+      "https://i2.wp.com/digital-photography-school.com/wp-content/uploads/2019/02/Landscapes-01-jeremy-flint.jpg?resize=1500%2C1000&ssl=1" ]
+
+
 let init () : Model * Cmd<Msg> =
-    let model = { Todos = []; Input = "" }
+    let model = { Images = []; Input = "" }
 
     let cmd =
-        Cmd.OfAsync.perform todosApi.getTodos () GotTodos
+        Cmd.OfAsync.perform
+            (fun () -> async {
+                do! Async.Sleep 2000
+                return bgImages })
+            ()
+            GotImages
 
     model, cmd
 
 let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
     match msg with
-    | GotTodos todos -> { model with Todos = todos }, Cmd.none
-    | SetInput value -> { model with Input = value }, Cmd.none
-    | AddTodo ->
-        let todo = Todo.create model.Input
-
-        let cmd =
-            Cmd.OfAsync.perform todosApi.addTodo todo AddedTodo
-
-        { model with Input = "" }, cmd
-    | AddedTodo todo ->
-        { model with
-              Todos = model.Todos @ [ todo ] },
-        Cmd.none
+    | GotImages images -> { model with Images = images}, Cmd.none
 
 open Feliz
 open Feliz.Bulma
-open ReactAwesomeSlider
-let navBrand =
-    Bulma.navbarBrand.div [
-        Bulma.navbarItem.a [
-            prop.href "https://safe-stack.github.io/"
-            navbarItem.isActive
-            prop.children [
-                Html.img [
-                    prop.src "/favicon.png"
-                    prop.alt "Logo"
-                ]
-            ]
-        ]
-    ]
+open Feliz.ReactAwesomeSlider
 
-let containerBox (model: Model) (dispatch: Msg -> unit) =
-    Bulma.box [
-        Bulma.content [
-            Html.ol [
-                for todo in model.Todos do
-                    Html.li [ prop.text todo.Description ]
-            ]
-        ]
-        Bulma.field.div [
-            field.isGrouped
-            prop.children [
-                Bulma.control.p [
-                    control.isExpanded
-                    prop.children [
-                        Bulma.input.text [
-                            prop.value model.Input
-                            prop.placeholder "What needs to be done?"
-                            prop.onChange (fun x -> SetInput x |> dispatch)
-                        ]
-                    ]
-                ]
-                Bulma.control.p [
-                    Bulma.button.a [
-                        color.isPrimary
-                        prop.disabled (Todo.isValid model.Input |> not)
-                        prop.onClick (fun _ -> dispatch AddTodo)
-                        prop.text "Add"
-                    ]
-                ]
-            ]
-        ]
-    ]
 
 let view (model: Model) (dispatch: Msg -> unit) =
-    Html.div []
+    Html.div [
+        AwesomeSlider.create [
+            AwesomeSlider.animation FoldOutAnimation
+            AwesomeSlider.fillParent false
+            AwesomeSlider.organicArrows true
+            AwesomeSlider.bullets true
+            AwesomeSlider.infinite true
+            AwesomeSlider.mobileTouch false
+            AwesomeSlider.startup true
+            AwesomeSlider.buttonContentRight (Html.div "Right")
+            AwesomeSlider.customContent (Html.div "Hello")
+            AwesomeSlider.startupScreen (Html.div "Loading")
+            AwesomeSlider.children [
+                for bgImage in model.Images do
+                Html.div [
+                    prop.style [
+                        style.backgroundImageUrl bgImage
+                        style.backgroundSize.cover
+                    ]
+                ]
+            ]
+        ]
+    ]
