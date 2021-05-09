@@ -69,11 +69,7 @@ let view (model: Model) (dispatch: Msg -> unit) =
         //    ]
         //]
         AutoplaySlider.create [
-            AutoplaySlider.play true
-            AutoplaySlider.animation FoldOutAnimation
-            AutoplaySlider.interval 3000
-            AutoplaySlider.cancelOnInteraction false
-            AwesomeSlider.children [
+            AutoplaySlider.children [
                 for bgImage in (List.rev model.Images) do
                 Html.div [
                     prop.style [
@@ -82,5 +78,8 @@ let view (model: Model) (dispatch: Msg -> unit) =
                     ]
                 ]
             ]
+            AutoplaySlider.play true
+            AutoplaySlider.interval 3000
+            AutoplaySlider.cancelOnInteraction false
         ]
     ]

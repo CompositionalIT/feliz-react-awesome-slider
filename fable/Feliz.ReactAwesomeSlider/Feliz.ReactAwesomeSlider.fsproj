@@ -5,7 +5,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <RootNamespace>Feliz.ReactAwesomeSlider</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.0.4</PackageVersion>
+        <PackageVersion>0.0.5</PackageVersion>
         <Title>Feliz.ReactAwesomeSlider</Title>
         <Authors>Compositional IT</Authors>
         <Description>Feliz binding for react-awesome-slider</Description>
