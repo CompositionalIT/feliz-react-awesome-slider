@@ -1,18 +1,11 @@
 module Index
 
 open Elmish
-open Fable.Remoting.Client
-open Shared
 
 type Model = { Images: string list; Input: string }
 
 type Msg =
     | GotImages of string list
-
-let todosApi =
-    Remoting.createApi ()
-    |> Remoting.withRouteBuilder Route.builder
-    |> Remoting.buildProxy<ITodosApi>
 
 
 

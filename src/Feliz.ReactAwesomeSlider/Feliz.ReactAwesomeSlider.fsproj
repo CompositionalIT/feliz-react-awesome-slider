@@ -2,35 +2,28 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>Feliz.ReactAwesomeSlider</RootNamespace>
+        <TargetFramework>net8.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.0.5</PackageVersion>
         <Title>Feliz.ReactAwesomeSlider</Title>
         <Authors>Compositional IT</Authors>
         <Description>Feliz binding for react-awesome-slider</Description>
-        <PackageProjectUrl>https://github.com/Akash-Mair/feliz-react-awesome-slider</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/Akash-Mair/feliz-react-awesome-slider</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/CompositionalIT/feliz-react-awesome-slider</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/CompositionalIT/feliz-react-awesome-slider</RepositoryUrl>
     </PropertyGroup>
     <PropertyGroup>
         <NpmDependencies>
             <NpmPackage Name="react-awesome-slider" Version="gte 4.1.0 lt 5.0.0" ResolutionStrategy="Max" />
+            <NpmPackage Name="prop-types" Version="gte 15.8.1 lt 16.0.0" ResolutionStrategy="Max" />
         </NpmDependencies>
         <PackageIcon>CIT-logo.png</PackageIcon>
-        <Version>0.0.2</Version>
     </PropertyGroup>
-    <ItemGroup>
-        <Content Include="*.fsproj; **\*.fs; **\*.fsi" PackagePath="fable\" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="paket.references" />
-      <Compile Include="Feliz.ReactAwesomeSlider.fs" />
-    </ItemGroup>
     <ItemGroup>
       <None Include="..\..\CIT-logo.png">
         <Pack>True</Pack>
-        <PackagePath></PackagePath>
+        <PackagePath>$(PackageIconUrl)</PackagePath>
       </None>
+      <None Include="paket.references" />
+      <Compile Include="Feliz.ReactAwesomeSlider.fs" />
     </ItemGroup>
     <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
