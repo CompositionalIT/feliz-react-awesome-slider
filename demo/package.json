@@ -1,0 +1,30 @@
+{
+    "private": true,
+    "engines": {
+        "node": "~18 || ~20",
+        "npm": "~9 || ~10"
+    },
+    "scripts": {
+        "prestart": "dotnet fable clean --yes && npm install",
+        "start": "dotnet fable watch -s -o ./output --run npx vite",
+        "prebuild": "dotnet fable clean --yes && npm install",
+        "build": "dotnet fable -s -o ./output --run npx vite build --base '/feliz-react-awesome-slider/'"
+    },
+    "dependencies": {
+        "bulma": "^0.9.1",
+        "prop-types": "^15.8.1",
+        "react": "^18.2.0",
+        "react-awesome-slider": "^4.1.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.9.1",
+        "@vitejs/plugin-react": "^4.2.0",
+        "autoprefixer": "^10.4.16",
+        "mocha": "^10.3.0",
+        "postcss": "^8.4.31",
+        "remotedev": "^0.2.9",
+        "sass": "^1.69.5",
+        "vite": "^5.0.12"
+    }
+}
