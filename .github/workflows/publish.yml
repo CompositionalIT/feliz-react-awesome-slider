@@ -28,11 +28,11 @@ jobs:
 
       - name: Pack
         run: dotnet pack --no-build -p:PackageVersion=${{ github.ref_name }} -p:PackageReleaseNotes=${{ github.event.release.html_url }} --output .
-        working-directory: ./src/Feliz.ReactSpeedometer
+        working-directory: ./src/Feliz.ReactAwesomeSlider
 
       - name: Publish
         run: dotnet nuget push "*.nupkg" --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
-        working-directory: ./src/Feliz.ReactSpeedometer
+        working-directory: ./src/Feliz.ReactAwesomeSlider
 
       - name: Setup node
         uses: actions/setup-node@v4
