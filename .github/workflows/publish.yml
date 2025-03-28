@@ -1,32 +1,53 @@
-name: Nuget-Publish
+name: Release Package
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  release:
+    types: [published]
 
 jobs:
-  build:
-
+  publish:
     runs-on: ubuntu-latest
+    permissions:
+        contents: write
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.100
-    - name: Restore tools
-      run: dotnet tool restore
-    - name: Restore dependencies
-      run: dotnet restore
-      working-directory: ./fable/Feliz.ReactAwesomeSlider
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-      working-directory: ./fable/Feliz.ReactAwesomeSlider
-    - name: Publish
-      uses: brandedoutcast/publish-nuget@v2.5.2
-      with:
-       PROJECT_FILE_PATH: fable/Feliz.ReactAwesomeSlider/Feliz.ReactAwesomeSlider.fsproj
-       NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore tools
+        run: dotnet tool restore
+
+      # Build and Pack need to be separate operations due to error NU5026
+      - name: Build
+        run: dotnet build --configuration Release
+
+      - name: Pack
+        run: dotnet pack --no-build -p:PackageVersion=${{ github.ref_name }} -p:PackageReleaseNotes=${{ github.event.release.html_url }} --output .
+        working-directory: ./src/Feliz.ReactAwesomeSlider
+
+      - name: Publish
+        run: dotnet nuget push "*.nupkg" --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+        working-directory: ./src/Feliz.ReactAwesomeSlider
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Restore demo tools
+        run: dotnet tool restore
+        working-directory: ./demo
+
+      - name: Build Demo
+        run: npm run build
+        working-directory: ./demo
+
+      - name: Deploy pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./demo/dist
