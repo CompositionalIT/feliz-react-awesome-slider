@@ -10,4 +10,4 @@ femto install Feliz.ReactAwesomeSlider
 
 ## Live example
 
-A demo can be found [here](https://akash-mair.github.io/feliz-react-awesome-slider/) with some sample code
+A demo can be found [here](https://compositionalit.github.io/feliz-react-awesome-slider/) with some sample code
