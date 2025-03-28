@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/styles/global.scss"],"names":[],"mappings":"AAAA,KACI,sBACA,SACA,uBACA,cACA,sB","file":"style.4673a982ce31fff63498.css","sourcesContent":["body {\r\n    box-sizing: border-box;\r\n    margin: 0;\r\n    font-family: Montserrat;\r\n    color: #6f6f6f;\r\n    background-color: #333333\r\n}\r\n"],"sourceRoot":""}
